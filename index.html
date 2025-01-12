@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arnold Sylvian Kimkpe</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <section id="dynamic-intro">
+        <h1>Arnold's Engineering World</h1>
+        <p>I build solutions that add superpowers to the mundane world.</p>
+        <p>Click below to explore my journey from simple experiments to groundbreaking innovations.</p>
+        <button id="journey-btn">Start Journey</button>
+    </section>
+
+    <section id="projects">
+        <h2>Behind Every Project, There's a Story</h2>
+        <div class="project-cards">
+            <div class="project-card">
+                <h3>Smart Parking Solution</h3>
+                <p><strong>Problem:</strong> Cities face huge traffic congestion and parking inefficiency.</p>
+                <p><strong>Solution:</strong> IoT-enabled smart parking with real-time data analytics.</p>
+                <a href="#" class="btn">See the full case study</a>
+            </div>
+            <div class="project-card">
+                <h3>IoT Smart Lamp</h3>
+                <p><strong>Problem:</strong> Unmanaged lighting systems waste energy.</p>
+                <p><strong>Solution:</strong> Smart lamps that adjust based on ambient light levels.</p>
+                <a href="#" class="btn">See the full case study</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="growth">
+        <h2>My Personal Growth</h2>
+        <div class="growth-journey">
+            <div class="growth-entry">
+                <h4>From Arduino to Full-Scale IoT Projects</h4>
+                <p>Started with basic Arduino projects and now designing complete cloud-integrated systems.</p>
+            </div>
+            <div class="growth-entry">
+                <h4>Overcoming Project Failures</h4>
+                <p>Learned that every failure is an opportunity to innovate and improve.</p>
+            </div>
+            <div class="growth-entry">
+                <h4>Cloud Engineering Mastery</h4>
+                <p>Developed expertise in cloud infrastructure and built scalable, resilient systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="challenge">
+        <h2>Think You Can Challenge Me?</h2>
+        <p>Let's put my skills to the test! Whether it's a tough project or a fun idea, I'm up for it.</p>
+        <p id="challengeBtn" class="cta-btn">Challenge Me!</p>
+    </section>
+    <!-- <section id="journey-challenge">
+    <h2>Ready to Start Your Journey?</h2>
+    <p>Let’s kick things off together, or challenge me with something exciting.</p>
+    <div class="button-container">
+        <a href="#start" class="cta-btn start-btn" id="startBtn">Start My Journey</a>
+        <a href="#challenge" class="cta-btn challenge-btn" id="challengeBtn">Challenge Me!</a>
+    </div>
+</section> -->
+
+    <!-- Challenge Me Modal -->
+    <div id="challengeModal" class="modal">
+        <div class="modal-content">
+            <h3>What Would You Like to Challenge Me With?</h3>
+            <textarea placeholder="Describe your challenge..." id="challengeInput"></textarea>
+            <button id="submitChallenge">Submit Challenge</button>
+            <div id="responseMessage" class="response-message"></div>
+            <button id="retryChallenge" class="retry-btn" style="display:none;">Submit Another Challenge</button>
+        </div>
+    </div>
+
+    <!-- Challenge Acknowledgment Pop-Up -->
+    <div id="acknowledgmentPopup" class="acknowledgment-popup">
+        <p id="acknowledgmentText">Challenge accepted! I'm ready!</p>
+    </div>
+
+
+    <script>
+        document.getElementById("journey-btn").addEventListener("click", function () {
+            alert("Let's dive into my journey! The page is under development.");
+        });
+
+        document.getElementById("challenge-btn").addEventListener("click", function () {
+            alert("Ready to take on your challenge! Let's collaborate.");
+        });
+
+        // Open Challenge Me Modal
+        const challengeBtn = document.getElementById('challengeBtn');
+        const challengeModal = document.getElementById('challengeModal');
+        const submitChallenge = document.getElementById('submitChallenge');
+        const challengeInput = document.getElementById('challengeInput');
+        const responseMessage = document.getElementById('responseMessage');
+        const retryChallenge = document.getElementById('retryChallenge');
+        const acknowledgmentPopup = document.getElementById('acknowledgmentPopup');
+        const acknowledgmentText = document.getElementById('acknowledgmentText');
+
+        // Open Challenge Modal
+        challengeBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent page scroll
+            challengeModal.classList.add('open');
+        });
+
+        // Submit Challenge
+        submitChallenge.addEventListener('click', () => {
+            const challenge = challengeInput.value.trim();
+
+            if (challenge === "") {
+                responseMessage.innerHTML = "Oops! Please enter a challenge.";
+                responseMessage.style.color = "#dc3545"; // Red color for error
+                return;
+            }
+
+            // Show acknowledgment pop-up animation
+            acknowledgmentText.innerHTML = `Challenge accepted! I'm ready to take on: <strong>"${challenge}"</strong>`;
+            acknowledgmentPopup.style.display = "block";
+
+            // Hide the submit button and show the retry button
+            submitChallenge.style.display = "none";
+            retryChallenge.style.display = "inline-block";
+
+            // Close the pop-up after a few seconds
+            setTimeout(() => {
+                acknowledgmentPopup.style.display = "none";
+            }, 4000);
+
+            // Optionally save the challenge in local storage for future reference
+            // localStorage.setItem('lastChallenge', challenge);
+
+            // Add animation for challenge acceptance (e.g., popping in text)
+            responseMessage.style.animation = "popIn 0.6s ease-out";
+        });
+
+        // Retry Challenge Button (Reset the modal)
+        retryChallenge.addEventListener('click', () => {
+            challengeInput.value = ''; // Reset input
+            responseMessage.innerHTML = ''; // Clear previous response
+            submitChallenge.style.display = "inline-block";
+            retryChallenge.style.display = "none";
+            challengeInput.focus(); // Focus the input for a new challenge
+        });
+
+        // Close Modal if clicking outside the modal content
+        window.addEventListener('click', (e) => {
+            if (e.target === challengeModal) {
+                challengeModal.classList.remove('open');
+            }
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
